@@ -16,6 +16,9 @@
 		0B3B9ACC2AB29EEA005D9DE2 /* ChallengeHoleriteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9ACB2AB29EEA005D9DE2 /* ChallengeHoleriteUITests.swift */; };
 		0B3B9ACE2AB29EEA005D9DE2 /* ChallengeHoleriteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9ACD2AB29EEA005D9DE2 /* ChallengeHoleriteUITestsLaunchTests.swift */; };
 		0B3B9ADC2AB29F8C005D9DE2 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9ADB2AB29F8C005D9DE2 /* HomeScreen.swift */; };
+		0B70E1772AB3CBAA009E52C8 /* CalculateScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B70E1762AB3CBAA009E52C8 /* CalculateScreen.swift */; };
+		0B70E1792AB3CBB9009E52C8 /* CalculateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B70E1782AB3CBB9009E52C8 /* CalculateViewController.swift */; };
+		0B70E17C2AB3E007009E52C8 /* CalculateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B70E17B2AB3E007009E52C8 /* CalculateTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		0B3B9ACB2AB29EEA005D9DE2 /* ChallengeHoleriteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeHoleriteUITests.swift; sourceTree = "<group>"; };
 		0B3B9ACD2AB29EEA005D9DE2 /* ChallengeHoleriteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeHoleriteUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0B3B9ADB2AB29F8C005D9DE2 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		0B70E1762AB3CBAA009E52C8 /* CalculateScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateScreen.swift; sourceTree = "<group>"; };
+		0B70E1782AB3CBB9009E52C8 /* CalculateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateViewController.swift; sourceTree = "<group>"; };
+		0B70E17B2AB3E007009E52C8 /* CalculateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,8 @@
 		0B3B9AA92AB29EE9005D9DE2 /* ChallengeHolerite */ = {
 			isa = PBXGroup;
 			children = (
+				0B70E17A2AB3DFED009E52C8 /* Cell */,
+				0B70E1752AB3CB91009E52C8 /* Calculate */,
 				0B3B9ADA2AB29F6E005D9DE2 /* Home */,
 				0B3B9AAA2AB29EE9005D9DE2 /* AppDelegate.swift */,
 				0B3B9AAC2AB29EE9005D9DE2 /* SceneDelegate.swift */,
@@ -133,6 +141,23 @@
 				0B3B9ADB2AB29F8C005D9DE2 /* HomeScreen.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		0B70E1752AB3CB91009E52C8 /* Calculate */ = {
+			isa = PBXGroup;
+			children = (
+				0B70E1762AB3CBAA009E52C8 /* CalculateScreen.swift */,
+				0B70E1782AB3CBB9009E52C8 /* CalculateViewController.swift */,
+			);
+			path = Calculate;
+			sourceTree = "<group>";
+		};
+		0B70E17A2AB3DFED009E52C8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0B70E17B2AB3E007009E52C8 /* CalculateTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,10 +290,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B70E1772AB3CBAA009E52C8 /* CalculateScreen.swift in Sources */,
 				0B3B9ADC2AB29F8C005D9DE2 /* HomeScreen.swift in Sources */,
 				0B3B9AAF2AB29EE9005D9DE2 /* HomeViewController.swift in Sources */,
 				0B3B9AAB2AB29EE9005D9DE2 /* AppDelegate.swift in Sources */,
 				0B3B9AAD2AB29EE9005D9DE2 /* SceneDelegate.swift in Sources */,
+				0B70E1792AB3CBB9009E52C8 /* CalculateViewController.swift in Sources */,
+				0B70E17C2AB3E007009E52C8 /* CalculateTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

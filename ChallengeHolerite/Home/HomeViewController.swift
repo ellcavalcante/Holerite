@@ -18,11 +18,29 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        screen?.delegate = self
+        screen?.configTextField()
+        settings()
     }
+
     
+    private func settings() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
 
-
-
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
+
+extension HomeViewController: HomeScreenProtocol {
+    func actionCalculateButton() {
+        screen?.cleanTextfield()
+        let screen: CalculateViewController = CalculateViewController()
+        screen.modalPresentationStyle = .formSheet
+        self.present(screen, animated: true)
+    }
+}
+
 
