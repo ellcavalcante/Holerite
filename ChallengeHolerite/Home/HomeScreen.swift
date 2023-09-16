@@ -48,6 +48,20 @@ class HomeScreen: UIView {
         return view
     }()
     
+    var incomeSalaryValue: Double {
+        if let salaryNumber = valueFormatted(incomeText: salaryTextField.text ?? ""), salaryTextField.text?.isEmpty == false {
+            return salaryNumber
+        }
+        return 0
+    }
+    
+    var discountValue: Double {
+        if let discountNumber = valueFormatted(incomeText: discountsTextField.text ?? ""), discountsTextField.text?.isEmpty == false {
+            return discountNumber
+        }
+        return 0
+    }
+    
     public lazy var salaryTextField: UITextField = {
         let salary = UITextField()
         salary.translatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +113,7 @@ class HomeScreen: UIView {
         delegate?.actionCalculateButton()
     }
     
-    @objc func configTextField() {
+    @objc func configTextField(_ textField: UITextField) {
         let salary: String = salaryTextField.text ?? ""
         let discounts: String = discountsTextField.text ?? ""
         
@@ -108,9 +122,22 @@ class HomeScreen: UIView {
             return
         }
         configButtonEnable(false)
+        
+        let currency = textField.text?.currencyInputFormatting()
+        textField.text = currency
+    }
+    
+    func valueFormatted(incomeText: String) -> Double? {
+        
+        let str = incomeText
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return Double(truncating: formatter.number(from: str) ?? 0 )
     }
     
     public func configButtonEnable(_ enable: Bool) {
+
+        
         if enable {
             calculateButton.backgroundColor = .blue
             calculateButton.isEnabled = true
@@ -182,3 +209,4 @@ class HomeScreen: UIView {
         ])
     }
 }
+

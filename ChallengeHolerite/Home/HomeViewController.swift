@@ -19,7 +19,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         screen?.delegate = self
-        screen?.configTextField()
+//        screen?.configTextField()
+        screen?.configButtonEnable(false)
         settings()
     }
 
@@ -42,5 +43,7 @@ extension HomeViewController: HomeScreenProtocol {
         self.present(screen, animated: true)
     }
 }
+
+
 
 
