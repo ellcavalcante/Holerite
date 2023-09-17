@@ -48,16 +48,9 @@ class HomeScreen: UIView {
         return view
     }()
     
-    var incomeSalaryValue: Double {
+    var entrySalaryValue: Double {
         if let salaryNumber = valueFormatted(incomeText: salaryTextField.text ?? ""), salaryTextField.text?.isEmpty == false {
             return salaryNumber
-        }
-        return 0
-    }
-    
-    var discountValue: Double {
-        if let discountNumber = valueFormatted(incomeText: discountsTextField.text ?? ""), discountsTextField.text?.isEmpty == false {
-            return discountNumber
         }
         return 0
     }
@@ -76,6 +69,13 @@ class HomeScreen: UIView {
         salary.addTarget(self, action: #selector(configTextField), for: .editingChanged)
         return salary
     }()
+    
+    var discountValue: Double {
+        if let discountNumber = valueFormatted(incomeText: discountsTextField.text ?? ""), discountsTextField.text?.isEmpty == false {
+            return discountNumber
+        }
+        return 0
+    }
     
     public lazy var discountsTextField: UITextField = {
         let discounts = UITextField()
@@ -114,21 +114,22 @@ class HomeScreen: UIView {
     }
     
     @objc func configTextField(_ textField: UITextField) {
+        
+        let currency = textField.text?.currencyInputFormatting()
+        textField.text = currency
+        
         let salary: String = salaryTextField.text ?? ""
         let discounts: String = discountsTextField.text ?? ""
         
         if (!salary.isEmpty && !discounts.isEmpty) {
             configButtonEnable(true)
             return
+        } else {
+            configButtonEnable(false)
         }
-        configButtonEnable(false)
-        
-        let currency = textField.text?.currencyInputFormatting()
-        textField.text = currency
     }
     
     func valueFormatted(incomeText: String) -> Double? {
-        
         let str = incomeText
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -136,8 +137,6 @@ class HomeScreen: UIView {
     }
     
     public func configButtonEnable(_ enable: Bool) {
-
-        
         if enable {
             calculateButton.backgroundColor = .blue
             calculateButton.isEnabled = true

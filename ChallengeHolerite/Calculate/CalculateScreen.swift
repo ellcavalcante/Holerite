@@ -35,6 +35,7 @@ class CalculateScreen: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .singleLine
         tableView.backgroundColor = .white
+        tableView.isScrollEnabled = false
         tableView.register(CalculateTableViewCell.self, forCellReuseIdentifier: CalculateTableViewCell.identifier)
         return tableView
     }()
@@ -75,9 +76,8 @@ class CalculateScreen: UIView {
             resultsTableView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 28),
             resultsTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             resultsTableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            resultsTableView.heightAnchor.constraint(equalToConstant: 304)
+            resultsTableView.heightAnchor.constraint(equalToConstant: 349)
             
         ])
     }
-    
 }
