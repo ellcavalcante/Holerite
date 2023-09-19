@@ -11,6 +11,8 @@ class CalculateTableViewCell: UITableViewCell {
     
     static let identifier: String = String(describing: CalculateTableViewCell.self)
     
+    var data: [ItensHolerite] = []
+    
     public lazy var entryTextLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +31,11 @@ class CalculateTableViewCell: UITableViewCell {
         return label
     }()
 
-
+    public func setUpCell(data: ItensHolerite) {
+        self.entryTextLabel.text = data.itens
+        
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview()
@@ -56,5 +62,4 @@ class CalculateTableViewCell: UITableViewCell {
             
         ])
     }
-
 }

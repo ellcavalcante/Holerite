@@ -19,7 +19,7 @@ class CalculateScreen: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("FECHAR", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.setTitleColor(UIColor(red: 52/255, green: 52/255, blue: 52/255, alpha: 1.0), for: .normal)
         button.addTarget(self, action: #selector(tappedCloseButton), for: .touchUpInside)
         return button
@@ -71,7 +71,7 @@ class CalculateScreen: UIView {
             closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 22),
             closeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 22),
             closeButton.heightAnchor.constraint(equalToConstant: 18),
-            closeButton.widthAnchor.constraint(equalToConstant: 60),
+            closeButton.widthAnchor.constraint(equalToConstant: 65),
             
             resultsTableView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 28),
             resultsTableView.leadingAnchor.constraint(equalTo: leadingAnchor),

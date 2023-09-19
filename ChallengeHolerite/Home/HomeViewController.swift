@@ -35,11 +35,14 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeScreenProtocol {
     func actionCalculateButton() {
-        let screenCalculate: CalculateViewController = CalculateViewController()
+        
+        let screenCalculate: CalculateViewController = CalculateViewController(entrySalary: screen?.entrySalaryValue ?? 0.0, discounts: screen?.discountValue ?? 0.0)
         screenCalculate.modalPresentationStyle = .formSheet
         screen?.cleanTextfield()
         screen?.configButtonEnable(false)
         self.present(screenCalculate, animated: true)
+        
+        
     }
 }
 

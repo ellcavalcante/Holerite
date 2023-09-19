@@ -19,6 +19,7 @@
 		0B70E1772AB3CBAA009E52C8 /* CalculateScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B70E1762AB3CBAA009E52C8 /* CalculateScreen.swift */; };
 		0B70E1792AB3CBB9009E52C8 /* CalculateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B70E1782AB3CBB9009E52C8 /* CalculateViewController.swift */; };
 		0B70E17C2AB3E007009E52C8 /* CalculateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B70E17B2AB3E007009E52C8 /* CalculateTableViewCell.swift */; };
+		0BAC92A02AB8F62E00B5A8BE /* ItensHolerite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAC929F2AB8F62E00B5A8BE /* ItensHolerite.swift */; };
 		0BD1AF1C2AB656C7005F0016 /* CurrencyFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD1AF1B2AB656C7005F0016 /* CurrencyFormat.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		0B70E1762AB3CBAA009E52C8 /* CalculateScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateScreen.swift; sourceTree = "<group>"; };
 		0B70E1782AB3CBB9009E52C8 /* CalculateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateViewController.swift; sourceTree = "<group>"; };
 		0B70E17B2AB3E007009E52C8 /* CalculateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateTableViewCell.swift; sourceTree = "<group>"; };
+		0BAC929F2AB8F62E00B5A8BE /* ItensHolerite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItensHolerite.swift; sourceTree = "<group>"; };
 		0BD1AF1B2AB656C7005F0016 /* CurrencyFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,9 +160,18 @@
 		0B70E17A2AB3DFED009E52C8 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				0BAC929E2AB8F5F000B5A8BE /* Model */,
 				0B70E17B2AB3E007009E52C8 /* CalculateTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		0BAC929E2AB8F5F000B5A8BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0BAC929F2AB8F62E00B5A8BE /* ItensHolerite.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		0BD1AF1A2AB656A3005F0016 /* Extesions */ = {
@@ -302,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B70E1772AB3CBAA009E52C8 /* CalculateScreen.swift in Sources */,
+				0BAC92A02AB8F62E00B5A8BE /* ItensHolerite.swift in Sources */,
 				0B3B9ADC2AB29F8C005D9DE2 /* HomeScreen.swift in Sources */,
 				0B3B9AAF2AB29EE9005D9DE2 /* HomeViewController.swift in Sources */,
 				0BD1AF1C2AB656C7005F0016 /* CurrencyFormat.swift in Sources */,
