@@ -160,8 +160,8 @@
 		0B70E17A2AB3DFED009E52C8 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				0BAC929E2AB8F5F000B5A8BE /* Model */,
 				0B70E17B2AB3E007009E52C8 /* CalculateTableViewCell.swift */,
+				0BAC929E2AB8F5F000B5A8BE /* Model */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

@@ -11,13 +11,31 @@ class CalculateTableViewCell: UITableViewCell {
     
     static let identifier: String = String(describing: CalculateTableViewCell.self)
     
-    var data: [ItensHolerite] = []
+    private let stackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .vertical
+        view.alignment = .fill
+        view.distribution = .fillEqually
+        view.spacing = 8
+        return view
+    }()
     
     public lazy var entryTextLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Salário bruto"
         label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    public lazy var subTextLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "8%"
+        label.font = .systemFont(ofSize: 17)
+        label.textColor = UIColor(red: 142/255, green: 142/255, blue: 142/255, alpha: 1.0)
         label.numberOfLines = 0
         return label
     }()
@@ -45,17 +63,23 @@ class CalculateTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func configureStackView() {
+        stackView.addArrangedSubview(entryTextLabel)
+        stackView.addArrangedSubview(subTextLabel)
+    }
+    
     private func addSubview() {
-        addSubview(entryTextLabel)
+        addSubview(stackView)
         addSubview(valueLabel)
+        configureStackView()
         setUpConstraints()
     }
     
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
             
-            entryTextLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            entryTextLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             
             valueLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             valueLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
