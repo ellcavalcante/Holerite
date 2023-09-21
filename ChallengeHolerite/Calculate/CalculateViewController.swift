@@ -12,10 +12,10 @@ class CalculateViewController: UIViewController {
     var screen: CalculateScreen?
     var cell: CalculateTableViewCell = CalculateTableViewCell()
     var itens: [ItensHolerite] = [ItensHolerite(itens: "Salário bruto"),
-                                   ItensHolerite(itens: "Descontos"),
-                                   ItensHolerite(itens: "Desconto INSS"),
-                                   ItensHolerite(itens: "Desconto IRRF"),
-                                   ItensHolerite(itens: "Salário líquido")]
+                                  ItensHolerite(itens: "Descontos"),
+                                  ItensHolerite(itens: "Desconto INSS"),
+                                  ItensHolerite(itens: "Desconto IRRF"),
+                                  ItensHolerite(itens: "Salário líquido")]
     var entrySalaryText: Double
     var discountValue: Double
     var inss: Double = 0
@@ -35,11 +35,37 @@ class CalculateViewController: UIViewController {
         screen = CalculateScreen()
         view = screen
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         screen?.delegate = self
         screen?.configTableViewProtocols(delegate: self, dataSource: self)
+    }
+    
+    func calculateIRRF(entrySalary: Double) -> (Double, String) {
+        if entrySalary <= 1903.98 {
+            return (entrySalary * 0.0, "0%")
+        } else if entrySalary >= 1903.99 && entrySalary <= 2826.65  {
+            return (entrySalary * 0.075, "7,5%")
+        } else if entrySalary >= 2826.66 && entrySalary <= 3751.05 {
+            return (entrySalary * 0.15, "15%")
+        } else if entrySalary >= 3751.06 && entrySalary <= 4664.68 {
+            return (entrySalary * 0.225, "22,5%")
+        } else {
+            return (entrySalary * 0.275, "27,5%")
+        }
+    }
+    
+    func calculateINSS(_ entrySalary: Double) -> (Double, String) {
+        if entrySalaryText <= 1302.00 {
+            return (entrySalaryText * 0.075, "7,5%")
+        } else if entrySalaryText >= 1302.01 && entrySalaryText <= 2427.35  {
+            return (entrySalaryText * 0.09, "9%")
+        } else if entrySalaryText >= 2427.36 && entrySalaryText <= 3641.03 {
+            return (entrySalaryText * 0.12, "12%")
+        } else {
+            return (entrySalaryText * 0.14, "14%")
+        }
     }
 }
 
@@ -68,33 +94,23 @@ extension CalculateViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: CalculateTableViewCell.identifier, for: indexPath) as? CalculateTableViewCell
             cell?.setUpCell(data: itens[indexPath.row])
             cell?.selectionStyle = .none
-            cell?.valueLabel.attributedText = NSAttributedString(string: "R$ \(discountValue)", attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
             cell?.valueLabel.text = "R$ " + String(format: "%.2f", discountValue)
             cell?.subTextLabel.isHidden = true
-            cell?.valueLabel.textColor = UIColor(red: 142/255, green: 142/255, blue: 142/255, alpha: 1.0)
+            if discountValue == 0.0 {
+                cell?.valueLabel.textColor = UIColor(red: 142/255, green: 142/255, blue: 142/255, alpha: 1.0)
+                cell?.valueLabel.attributedText = NSAttributedString(string: "R$ \(discountValue)", attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
+            } else {
+                cell?.valueLabel.textColor = UIColor(red: 219/255, green: 66/255, blue: 57/255, alpha: 1.0)
+            }
             return cell ?? UITableViewCell()
         }
         if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: CalculateTableViewCell.identifier, for: indexPath) as? CalculateTableViewCell
             cell?.setUpCell(data: itens[indexPath.row])
             cell?.selectionStyle = .none
-            if entrySalaryText <= 1302.00 {
-                cell?.subTextLabel.text = "7,5%"
-                let resultINSS = entrySalaryText * 0.075
-                cell?.valueLabel.text = "R$ " + String(format: "%.2f", resultINSS)
-            } else if entrySalaryText >= 1302.01 && entrySalaryText <= 2427.35  {
-                cell?.subTextLabel.text = "9%"
-                let resultINSS = entrySalaryText * 0.09
-                cell?.valueLabel.text = "R$ " + String(format: "%.2f", resultINSS)
-            } else if entrySalaryText >= 2427.36 && entrySalaryText <= 3641.03 {
-                cell?.subTextLabel.text = "12%"
-                let resultINSS = entrySalaryText * 0.12
-                cell?.valueLabel.text = "R$ " + String(format: "%.2f", resultINSS)
-            } else if entrySalaryText >= 3641.03 && entrySalaryText <= 7087.22 {
-                cell?.subTextLabel.text = "14%"
-                let resultINSS = entrySalaryText * 0.14
-                cell?.valueLabel.text = "R$ " + String(format: "%.2f", resultINSS)
-            }
+            let INSS = calculateINSS(entrySalaryText)
+            cell?.valueLabel.text = "R$ " + String(format: "%.2f", INSS.0)
+            cell?.subTextLabel.text = INSS.1
             cell?.valueLabel.textColor = UIColor(red: 219/255, green: 66/255, blue: 57/255, alpha: 1.0)
             return cell ?? UITableViewCell()
         }
@@ -102,37 +118,29 @@ extension CalculateViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: CalculateTableViewCell.identifier, for: indexPath) as? CalculateTableViewCell
             cell?.setUpCell(data: itens[indexPath.row])
             cell?.selectionStyle = .none
-            cell?.valueLabel.attributedText = NSAttributedString(string: "R$ \(discountValue)", attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
-            cell?.valueLabel.text = "R$ " + String(format: "%.2f", discountValue)
-            if entrySalaryText <= 1903.98 {
-                cell?.subTextLabel.text = "0%"
-                let resultIRRF = entrySalaryText * 0.0
-                cell?.valueLabel.text = "R$ " + String(format: "%.2f", resultIRRF)
-            } else if entrySalaryText >= 1903.99 && entrySalaryText <= 2826.65  {
-                cell?.subTextLabel.text = "7,5%"
-                let resultIRRF = entrySalaryText * 0.075
-                cell?.valueLabel.text = "R$ " + String(format: "%.2f", resultIRRF)
-            } else if entrySalaryText >= 2826.66 && entrySalaryText <= 3751.05 {
-                cell?.subTextLabel.text = "15%"
-                let resultIRRF = entrySalaryText * 0.15
-                cell?.valueLabel.text = "R$ " + String(format: "%.2f", resultIRRF)
-            } else if entrySalaryText >= 3751.06 && entrySalaryText <= 4664.68 {
-                cell?.subTextLabel.text = "22,5%"
-                let resultIRRF = entrySalaryText * 0.225
-                cell?.valueLabel.text = "R$ " + String(format: "%.2f", resultIRRF)
-            } else if entrySalaryText > 4664.68 {
-                cell?.subTextLabel.text = "27,5%"
-                let resultIRRF = entrySalaryText * 0.275
-                cell?.valueLabel.text = "R$ " + String(format: "%.2f", resultIRRF)
+            let IRRF = calculateIRRF(entrySalary: entrySalaryText)
+            cell?.valueLabel.text = "R$ " + String(format: "%.2f", IRRF.0)
+            cell?.subTextLabel.text = IRRF.1
+            if IRRF.0 == 0.0 {
+                cell?.valueLabel.textColor = UIColor(red: 142/255, green: 142/255, blue: 142/255, alpha: 1.0)
+                cell?.valueLabel.attributedText = NSAttributedString(string: "R$ \(IRRF.0)", attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue])
+            } else {
+                cell?.valueLabel.textColor = UIColor(red: 219/255, green: 66/255, blue: 57/255, alpha: 1.0)
             }
-            cell?.valueLabel.textColor = UIColor(red: 142/255, green: 142/255, blue: 142/255, alpha: 1.0)
+            
             return cell ?? UITableViewCell()
         }
         if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: CalculateTableViewCell.identifier, for: indexPath) as? CalculateTableViewCell
             cell?.setUpCell(data: itens[indexPath.row])
             cell?.selectionStyle = .none
-            cell?.valueLabel.text = "R$ " + String(format: "%.2f", entrySalaryText)
+            var total = entrySalaryText
+            let IRRF = calculateIRRF(entrySalary: entrySalaryText)
+            total -= IRRF.0
+            total -= discountValue
+            let INSS = calculateINSS(entrySalaryText)
+            total -= INSS.0
+            cell?.valueLabel.text = "R$ " + String(format: "%.2f", total)
             cell?.subTextLabel.isHidden = true
             cell?.valueLabel.textColor = UIColor(red: 66/255, green: 166/255, blue: 64/255, alpha: 1.0)
             return cell ?? UITableViewCell()
